@@ -14,7 +14,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { interceptorProvider } from './services/interceptor-service';
 import { HomeComponent } from './components/home/home.component';
 import { AcercaComponent } from './components/acerca/acerca.component';
-import { ExperienciaComponent } from './components/experiencia/experiencia.component';
+import { PrestamosComponent } from './components/prestamos/prestamos.component';
 import { AutosComponent } from './components/autos/autos.component';
 
 @NgModule({
@@ -22,7 +22,7 @@ import { AutosComponent } from './components/autos/autos.component';
     AppComponent,
     AcercaComponent,
     EncabezadoComponent,
-    ExperienciaComponent,
+    PrestamosComponent,
     FooterComponent,
     HomeComponent,
     LoginComponent,
