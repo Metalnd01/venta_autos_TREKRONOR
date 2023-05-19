@@ -1,0 +1,76 @@
+<div class="container-flex">
+    
+  <div class="row container-fuid">
+    <div class="col-12 img-fluid">
+      <img src="../../../assets/pexels-pixabay-270348.jpg" alt="banner" id="banner">
+    </div>
+    <div class="ola ">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#8c7b75" fill-opacity="1" d="M0,224L80,224C160,224,320,224,480,186.7C640,149,800,75,960,53.3C1120,32,1280,64,1360,80L1440,96L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path></svg>
+    </div>
+  </div>
+
+  <div class="row container-fluid" *ngIf="encabezado">
+    <div class="col-xs-11 col-sm-2 col-md-2" >
+      <img src={{encabezado.foto_principal}} alt="" class="" id="foto_principal">
+      <!--<button type="button" (click)="onOpenModal('add')" class="col-1 btn-edicion float-end" id="pencil_foto_perfil"><i class="fa-solid fa-pencil flex-item"></i></button> -->
+    </div>
+    <div class="row p-3 m-3">
+      <div class="col-xs-12 col-6 flex-item" >
+        <h1 class="text-left flex-item" id="titulo">{{encabezado.titulo}}</h1> 
+      </div>
+      <div class="row p-3 m-3">
+        <div class="col-xs-8 col-6 text-left flex-item " >
+          <h2>{{encabezado.titulo}}</h2>
+          <div class="col text-center" *ngIf="isLogged">
+            <button (click)="onOpenModal('edit', encabezado)" 
+              class="col-1 btn-edicion btn btn-primary tooltips" data-placement="top" 
+              data-bs-toggle="modal" data-bs-target="#editEncabezadoModal" data-original-title="Edit">
+              <i class="fa-solid fa-pencil"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+
+  <!--Boton Modificar-->
+  <div class="modal fade" id="editEncabezadoModal" tabindex="-1" role="dialog" aria-labelledby="editEncabezadoModalLabel"
+              aria-hidden="true">
+
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editEncabezadoModalLabel">Editar Encabezado</h5>
+        </div>
+        <div class="modal-body">
+          <form #editForm="ngForm" >
+            <div class="form-group">
+              <label for="titulo">Titulo principal</label>
+              <input type="text" ngModel = "{{editEncabezado?.titulo}}" name="titulo" class="form-control" id="titulo" placeholder="Titulo" required>
+              <input type="hidden" ngModel="{{editEncabezado?.id}}" name="id" class="form-control" id="id" placeholder="">
+            </div>
+            <div class="form-group">
+              <label for="foto_principal">Imagen</label>
+              <input type="text" ngModel="{{editEncabezado?.foto_principal}}" name="foto_principal" class="form-control" id="fotoPrincipal" placeholder="Url de imagen" required>
+            </div>
+            <div class="form-group">
+              <label for="subtitulo">Subtitulo</label>
+              <input type="text" ngModel="{{editEncabezado?.subtitulo}}" name="subtitulo" class="form-control" id="subtitulo" placeholder="subtitulo" required>
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <button (click)="onUpdateEncabezado(editForm.value)" data-bs-dismiss="modal" class="btn btn-primary">Guardar Cambios</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="encabezado?.id == 0" class="col-lg-6">
+    <div class="col-6 text-center alert alert-info" role="alert">
+      <h3>Sin datos</h3>
+      <p>No hay datos cargados...</p>
+    </div>
+  </div>

@@ -1,0 +1,138 @@
+<div class="card mat-card seccion" id="autos">
+    <div class="row color-primary-dark">
+      <h3 class="col-10 p-3">Autos</h3>
+      <div class="col-2 py-1 justify-content-end" *ngIf="isLogged">
+        <button type="button" class="btn btn-primary col-2 text-center float-end" data-bs-toggle="modal" data-bs-target="#addAutosModal" (click)="onOpenModal('add')"> 
+          <i class="fa-solid fa-plus"><span class="sr-only"></span></i>
+        </button>
+      </div>
+    </div>
+    <div class="main-container" *ngFor="let auto of autos">
+      <div class="row my-2 p-5">
+        <div class="col-sm-12 col-md-3 col-lg-3">
+          <a href="{{auto.urlAuto}}" target="_blank"><img src="{{auto.imagenAuto}}" alt="Sin imagen" class="img-thumbnail img-fluid"></a>
+        </div>
+        <div class="col-1"></div>
+        <div class="col-sm-12 col-md-6 col-lg-6">
+          <h3>{{auto.tituloAuto}}</h3>
+          <p>{{auto.descripcionAuto}}</p>
+        </div>
+        <div class="col text-center py-1" *ngIf="isLogged">
+          <button type="button" (click)="onOpenModal('edit', auto)" 
+            class="btn-edicion btn btn-primary col-2 tooltips" data-placement="top" 
+            data-bs-toggle="modal" data-bs-target="#editAutosModal" data-original-title="Edit">
+            <i class="fa-solid fa-pencil"></i></button>
+          <button (click)="onOpenModal('delete', auto)" 
+            class="col-2 btn-edicion btn btn-secondary tooltips" data-placement="top" 
+            data-bs-toggle="modal" data-bs-target="#deleteAutosModal" data-original-title="Delete">
+            <i class="fa-solid fa-circle-xmark"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!--Boton Agregar-->
+  <div class="modal fade" id="addAutosModal" tabindex="-1" aria-labelledby="addAutosModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addAutosModalLabel">Agregar Auto</h5>
+        </div>
+        <div class="modal-body">
+          <form #addForm="ngForm" (ngSubmit)="onAddAutos(addForm)">
+            <div class="form-group">
+              <label for="tituloAuto">Título</label>
+              <input type="text" ngModel name="tituloAuto" class="form-control" id="tituloAuto" placeholder="Título" required>
+            </div>
+            <div class="form-group">
+              <label for="descripcionAuto">Descripción</label>
+              <input type="text" ngModel name="descripcionAuto" class="form-control" id="descripcionAuto" placeholder="Breve descripción" required>
+            </div>
+            <div class="form-group">
+              <label for="imagenAuto">Imagen</label>
+              <input type="text" ngModel name="imagenAuto" class="form-control" id="imagenAuto" placeholder="Url de imagen" required>
+            </div>
+            <div class="form-group">
+              <label for="urlAuto">URL del Auto</label>
+              <input type="text" ngModel name="urlAuto" class="form-control" id="urlAuto" placeholder="Url del Auto" required>
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="add-autos-form" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!--Boton Modificar-->
+  <div class="modal fade" id="editAutosModal" tabindex="-1" role="dialog" aria-labelledby="editAutosModalLabel"
+              aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editAutosModalLabel">Editar Auto {{editAutos?.tituloAuto}}</h5>
+        </div>
+        <div class="modal-body">
+          <form #editForm="ngForm" >
+            <div class="form-group">
+              <label for="tituloAuto">Título</label>
+              <input type="text" ngModel = "{{editAutos?.tituloAuto}}" name="tituloAuto" class="form-control" id="tituloAuto" placeholder="Título" required>
+              <input type="hidden" ngModel="{{editAutos?.idAuto}}" name="idAuto" class="form-control" id="idAuto" placeholder="">
+            </div>
+            <div class="form-group">
+              <label for="descripcionAuto">Descripción</label>
+              <input type="text" ngModel="{{editAutos?.descripcionAuto}}" name="descripcionAuto" class="form-control" id="descripcionAuto" placeholder="Breve descripción" required>
+            </div>
+            <div class="form-group">
+              <label for="imagenAuto">Imagen</label>
+              <input type="text" ngModel="{{editAutos?.imagenAuto}}" name="imagenAuto" class="form-control" id="imagenAuto" placeholder="Url de imagen" required>
+            </div>
+            <div class="form-group">
+              <label for="urlAuto">Url del Auto</label>
+              <input type="text" ngModel="{{editAutos?.urlAuto}}" name="urlAuto" class="form-control" id="urlAuto" placeholder="Url del Auto" required>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button (click)="onUpdateAutos(editForm.value)" data-bs-dismiss="modal" class="btn btn-primary">Guardar Cambios</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Borrar entrada-->
+  <div class="modal fade" id="deleteAutosModal" tabindex="-1" role="dialog" aria-labelledby="deleteAutosModalLabel"
+              aria-hidden="true">
+
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteAutosModalLabel">Borrar Auto {{deleteAutos?.tituloAuto}}</h5>
+        </div>
+        <div class="modal-body">
+            <p>
+              ¿Seguro quiere borrar la entrada? {{deleteAutos?.tituloAuto}}
+            </p>
+            <div class="modal-footer">
+              <button type="button" id="" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+              <button (click)="onDeleteAutos(deleteAutos!.idAuto)" data-bs-dismiss="modal" aria-label="close" class="btn btn-danger">Borrar</button>
+            </div>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+
+  <div *ngIf="autos?.length == 0" class="col-lg-6">
+    <div class="col-6 text-center alert alert-info" role="alert">
+      <h3>Sin datos</h3>
+      <p>No hay datos cargados...</p>
+    </div>
+  </div>
