@@ -1,24 +1,22 @@
 <nav class="navbar navbar-expand-md color-primary-dark navbar-dark">
     <div class="container-fluid">
       <img src="../../../assets/Tre Kronor-logos/Tre Kronor-1.png" alt="Tre Kronor" id="TKLogo">
-      <!--<img src="../assets/LogosInti.png" alt="Inti" id="LogoInti">-->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
         <ul class="navbar-nav">
-          <!-- <li class="nav-item">
-            <a href="#instagram" class="iconos_redes"><i class="fa-brands fa-instagram m-3 fa-xl"></i></a>
+          <li class="nav-item">
+            <a href="#cars" class="iconos iconosFontAwesome"><i class="fa-solid fa-car-side fa-beat-fade fa-2xl" style="color: #424136;"></i></a>
+            <span id="cars">Cars</span>
           </li>
           <li class="nav-item">
-            <a href="#twitter" class="iconos_redes"><i class="fa-brands fa-twitter m-3 fa-xl"></i></a>
-          </li> -->
-          <li class="nav-item">
-            <a href="https://www.linkedin.com/in/william-morales-b17b521b2/" class="iconos_redes"><i class="fa-brands fa-linkedin m-3 fa-xl"></i></a>
+            <a href="#loan" class="iconos iconosFontAwesome"><i class="fa-solid fa-piggy-bank fa-bounce fa-2xl" style="color: #424136; align-items: center;"></i></a>
+            <span id="loan">Get a loan!</span>
           </li>
           <li class="nav-item">
-            <button type="button" class="btn btn-outline-light iconos_redes" (click)="login()" *ngIf="!isLogged">INGRESO</button>
-            <button type="button" class="btn btn-outline-light iconos_redes"  (click)="onLogOut()" *ngIf="isLogged">CERRAR SESION</button>
+            <button type="button" class="btn btn-outline-light iconos" (click)="login()" *ngIf="!isLogged">INGRESO</button>
+            <button type="button" class="btn btn-outline-light iconos"  (click)="onLogOut()" *ngIf="isLogged">CERRAR SESION</button>
           </li>
         </ul>
       </div>

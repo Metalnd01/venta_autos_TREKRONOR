@@ -10,7 +10,7 @@ li{
   margin-top: 0;
 }
 
-.iconos_redes{
+.iconos{
     display: flex;
     margin: 5px 0px; 
     color:white; 
@@ -19,9 +19,34 @@ li{
     text-decoration: none;
 }
 
-.iconos_redes:hover {
-  color: black;
+@media only screen and (min-width:577px) {
+  .iconosFontAwesome {
+    display: none;
+  }
+  li span{
+    display: flex;
+    margin: 10px 3rem; 
+    align-items: end;
+    color:white; 
+    size: 10px;
+    text-align: center;
+    text-decoration: none;
+  }
 }
+
+@media only screen and (min-width:320px) and (max-width:576px) {
+  #cars, #loan {
+    display: none;
+  }
+  .iconos {
+    display: inline-block;
+    justify-content: space-around;
+  }
+  li {
+    margin-top: 2rem;
+  }
+}
+
 
 .btn-login{
   font-size: 0.9rem;
